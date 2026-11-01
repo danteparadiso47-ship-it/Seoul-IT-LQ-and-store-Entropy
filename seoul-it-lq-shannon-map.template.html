@@ -1,0 +1,269 @@
+<div id="seoul-it-lq-shannon-map">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;500;700&display=swap');
+    #seoul-it-lq-shannon-map { --mint: #2ac1bc; --mint-soft: #eaf8f7; --ink: #243331; --muted: #667572; --line: #dce7e5; --warm: #fff5cc; color: var(--ink); font: 15px/1.7 'Noto Sans KR', sans-serif; width: 100%; max-width: 1024px; margin: 0 auto; }
+    #seoul-it-lq-shannon-map h2 { font: 400 1.8rem/1.3 'Jua', 'Noto Sans KR', sans-serif; margin: 0 0 .45rem; letter-spacing: -.02em; }
+    #seoul-it-lq-shannon-map h3 { font: 400 1.28rem/1.4 'Jua', 'Noto Sans KR', sans-serif; margin: 0; }
+    #seoul-it-lq-shannon-map .subtitle { color: var(--muted); margin: 0; }
+    #seoul-it-lq-shannon-map .hero { background: var(--mint-soft); border-left: 5px solid var(--mint); border-radius: 12px; padding: 1.1rem 1.25rem; margin-bottom: 1rem; }
+    #seoul-it-lq-shannon-map .eyebrow { color: #168b86; font-size: .78rem; font-weight: 500; letter-spacing: .08em; margin: 0 0 .25rem; }
+    #seoul-it-lq-shannon-map .research-question { margin: .65rem 0 0; font-size: 1.02rem; font-weight: 500; }
+    #seoul-it-lq-shannon-map .scope-note { color: var(--muted); font-size: .88rem; margin: .25rem 0 0; }
+    #seoul-it-lq-shannon-map .key-results { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin: 1rem 0; }
+    #seoul-it-lq-shannon-map .result-label { display: block; color: var(--muted); font-size: .82rem; }
+    #seoul-it-lq-shannon-map .result-value { display: block; color: #168b86; font-size: 1.3rem; font-weight: 500; line-height: 1.35; }
+    #seoul-it-lq-shannon-map .result-context { display: block; color: var(--muted); font-size: .78rem; }
+    #seoul-it-lq-shannon-map .takeaway { background: var(--warm); border-radius: 10px; padding: .75rem 1rem; margin: .8rem 0 1.4rem; }
+    #seoul-it-lq-shannon-map .maps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+    #seoul-it-lq-shannon-map section { min-width: 0; }
+    #seoul-it-lq-shannon-map .hint { color: var(--muted); font-size: .88rem; margin: .2rem 0 .55rem; }
+    #seoul-it-lq-shannon-map svg { display: block; width: 100%; height: auto; overflow: visible; }
+    #seoul-it-lq-shannon-map .district { stroke: #ffffff; stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+    #seoul-it-lq-shannon-map .district:hover, #seoul-it-lq-shannon-map .district:focus { stroke: #243331; stroke-width: 2.5; outline: 2px solid var(--mint); outline-offset: 2px; }
+    #seoul-it-lq-shannon-map .scale { margin: .45rem 0 .8rem; font-size: .84rem; }
+    #seoul-it-lq-shannon-map .scale-labels, #seoul-it-lq-shannon-map .scale-values { display: flex; justify-content: space-between; gap: .5rem; color: var(--muted); }
+    #seoul-it-lq-shannon-map .split-scale { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin: .2rem 0; }
+    #seoul-it-lq-shannon-map .ramp { display: flex; height: 12px; overflow: hidden; border-radius: 2px; }
+    #seoul-it-lq-shannon-map .ramp-step { flex: 1; }
+    #seoul-it-lq-shannon-map .center-label { text-align: center; color: var(--foreground); font-weight: 500; margin: .15rem 0; }
+    #seoul-it-lq-shannon-map .ranked-section { margin-top: 1.8rem; }
+    #seoul-it-lq-shannon-map .ranked-section > h3 { margin-bottom: .35rem; }
+    #seoul-it-lq-shannon-map .ranked { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+    #seoul-it-lq-shannon-map .ranked section { min-width: 0; }
+    #seoul-it-lq-shannon-map .ranked h4 { font-size: 1rem; font-weight: 500; margin: .65rem 0 0; }
+    #seoul-it-lq-shannon-map .ranked svg { display: block; width: 100%; height: auto; overflow: visible; }
+    #seoul-it-lq-shannon-map .rank-label, #seoul-it-lq-shannon-map .rank-value, #seoul-it-lq-shannon-map .rank-tick { fill: var(--ink); font-size: 12px; }
+    #seoul-it-lq-shannon-map .rank-tick { fill: var(--muted); }
+    #seoul-it-lq-shannon-map .analysis { margin-top: 1rem; }
+    #seoul-it-lq-shannon-map .analysis h3 { margin-bottom: .45rem; }
+    #seoul-it-lq-shannon-map .analysis p { margin: .3rem 0; }
+    #seoul-it-lq-shannon-map .analysis strong { font-weight: 500; }
+    #seoul-it-lq-shannon-map .analysis h4 { font-size: 1rem; font-weight: 500; margin: .9rem 0 .35rem; }
+    #seoul-it-lq-shannon-map .analysis ol { margin: .25rem 0 .5rem; padding-left: 1.3rem; }
+    #seoul-it-lq-shannon-map .analysis li { margin: .2rem 0; }
+    #seoul-it-lq-shannon-map .formula-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    #seoul-it-lq-shannon-map .formula-grid section { min-width: 0; }
+    #seoul-it-lq-shannon-map .formula-list { display: grid; gap: .45rem; margin: .4rem 0 .65rem; }
+    #seoul-it-lq-shannon-map .formula-line { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; background: var(--mint-soft); border-radius: 8px; padding: .45rem .65rem; color: var(--ink); font-size: .98rem; }
+    #seoul-it-lq-shannon-map .formula-name { color: #168b86; font-weight: 500; }
+    #seoul-it-lq-shannon-map .fraction { display: inline-grid; grid-template-rows: auto auto; text-align: center; line-height: 1.35; vertical-align: middle; }
+    #seoul-it-lq-shannon-map .fraction > span:first-child { border-bottom: 1px solid #667572; padding: 0 .25rem .08rem; }
+    #seoul-it-lq-shannon-map .fraction > span:last-child { padding: .08rem .25rem 0; }
+    #seoul-it-lq-shannon-map .method-details { margin-top: 1.5rem; }
+    #seoul-it-lq-shannon-map .method-details > summary { color: #168b86; font-weight: 500; cursor: pointer; padding: .75rem 0; }
+    #seoul-it-lq-shannon-map .method-body { padding: .25rem 0 .5rem; }
+    #seoul-it-lq-shannon-map .source { color: var(--muted); font-size: .82rem; margin-top: .7rem; }
+    #seoul-it-lq-shannon-map a { color: #168b86; }
+    @media (max-width: 650px) { #seoul-it-lq-shannon-map h2 { font-size: 1.55rem; } #seoul-it-lq-shannon-map .maps, #seoul-it-lq-shannon-map .ranked, #seoul-it-lq-shannon-map .formula-grid, #seoul-it-lq-shannon-map .key-results { grid-template-columns: 1fr; gap: .5rem; } }
+  </style>
+  <header class="hero">
+    <p class="eyebrow">SEOUL · DISTRICT RESEARCH</p>
+    <h2>IT 산업 집중도와 상권 업종 다양성</h2>
+    <p class="subtitle">서울 자치구 25곳 비교 · 사업체 종사자와 점포 업종 구조</p>
+    <p class="research-question">정보통신업 집중도가 높은 자치구일수록 상권 업종도 다양할까?</p>
+    <p class="scope-note">종사자 수는 주민의 거주지가 아닌 사업체 소재지 기준입니다.</p>
+  </header>
+  <div class="key-results" aria-label="핵심 결과">
+    <div class="card"><span class="result-label">서울 정보통신업 종사 비중</span><span class="result-value">8.49%</span><span class="result-context">490,271 / 5,772,456명 · 2024</span></div>
+    <div class="card"><span class="result-label">Pearson 상관 · 정규화 Shannon</span><span class="result-value">−0.275</span><span class="result-context">약한 음의 상관 · 자치구 25곳</span></div>
+    <div class="card"><span class="result-label">Spearman 상관 · 정규화 Shannon</span><span class="result-value">−0.188</span><span class="result-context">약한 음의 상관 · 자치구 25곳</span></div>
+  </div>
+  <p class="takeaway">두 지표에서 약한 음의 상관 방향을 보였습니다. 자료 시점이 다르므로 탐색적 비교로 해석하세요.</p>
+  <div class="maps">
+    <section aria-labelledby="map-lq-title">
+      <h3 id="map-lq-title">IT 산업 입지계수 (LQ)</h3>
+      <p class="hint">사업체 종사자 기준 · 2024년 · 서울 전체 대비 정보통신업 집중도</p>
+      <div class="scale" aria-label="IT LQ 색상 범례">
+        <div class="scale-values"><span id="lq-min"></span><span>1.000</span><span id="lq-max"></span></div>
+        <div class="split-scale">
+          <div class="ramp blue-ramp"><i class="ramp-step" style="background-color:#0c4a6e"></i><i class="ramp-step" style="background-color:#156082"></i><i class="ramp-step" style="background-color:#2b7a9d"></i><i class="ramp-step" style="background-color:#58a6c6"></i><i class="ramp-step" style="background-color:#a7d8e8"></i></div>
+          <div class="ramp orange-ramp"><i class="ramp-step" style="background-color:#fdd49e"></i><i class="ramp-step" style="background-color:#fdbb84"></i><i class="ramp-step" style="background-color:#fc8d59"></i><i class="ramp-step" style="background-color:#ef6548"></i><i class="ramp-step" style="background-color:#b30000"></i></div>
+        </div>
+        <div class="scale-labels"><span>평균 미만 · 파랑</span><span>평균 초과 · 주황</span></div>
+        <div class="center-label">서울 평균 기준 LQ = 1</div>
+      </div>
+      <svg id="map-lq" role="img" aria-label="서울 25개 자치구 IT 산업 입지계수 지도"></svg>
+    </section>
+    <section aria-labelledby="map-shannon-title">
+      <h3 id="map-shannon-title">상권 업종 다양성 (정규화 Shannon 지수)</h3>
+      <p class="hint">상가정보 소분류 기준 · 2026년 3월 자료</p>
+      <div class="scale" aria-label="Shannon 지수 색상 범례">
+        <div class="scale-values"><span id="shannon-min"></span><span id="shannon-max"></span></div>
+        <div class="ramp purple-ramp"><i class="ramp-step" style="background-color:#f1e9ff"></i><i class="ramp-step" style="background-color:#d5b3ff"></i><i class="ramp-step" style="background-color:#b57aff"></i><i class="ramp-step" style="background-color:#8b3fe6"></i><i class="ramp-step" style="background-color:#4c1d95"></i></div>
+        <div class="scale-labels"><span>낮은 다양성</span><span>높은 다양성</span></div>
+      </div>
+      <svg id="map-shannon" role="img" aria-label="서울 25개 자치구 상권 업종 다양성 지도"></svg>
+    </section>
+  </div>
+  <section class="ranked-section" aria-labelledby="ranked-title">
+    <h3 id="ranked-title">자치구별 지표 수치</h3>
+    <div class="ranked">
+      <section aria-labelledby="lq-rank-title">
+        <h4 id="lq-rank-title">IT 산업 입지계수 (LQ) · 높은 순</h4>
+        <p class="hint">막대의 기준선은 서울 평균 (LQ = 1)입니다.</p>
+        <svg id="lq-ranking" role="img" aria-label="자치구별 IT 산업 입지계수 내림차순 순위 막대그래프"></svg>
+      </section>
+      <section aria-labelledby="shannon-rank-title">
+        <h4 id="shannon-rank-title">정규화 Shannon 지수 · 높은 순</h4>
+        <p class="hint">가로축 표시 범위: 0.800–0.860</p>
+        <svg id="shannon-ranking" role="img" aria-label="자치구별 정규화 Shannon 지수 내림차순 순위 막대그래프"></svg>
+      </section>
+    </div>
+  </section>
+  <hr>
+  <details class="method-details">
+    <summary>연구 설계, 자료 전처리, 지표 계산식과 상세 결과</summary>
+    <div class="method-body">
+  <section class="analysis" aria-labelledby="analysis-title">
+    <h3 id="analysis-title">분석 대상</h3>
+    <p><strong>분석 단위·대상:</strong> 서울 25개 자치구. 종사자는 거주지 기준 주민이 아니라 각 사업체 소재지에서 일하는 종사자이며, 상권 다양성은 해당 자치구의 점포 업종 구성으로 측정했습니다.</p>
+    <h4>사용 자료와 전처리</h4>
+    <ol>
+      <li>서울시 「사업체현황(산업대분류별·동별)」에서 2024년 종사자 수를 사용하고, 중복 집계를 막기 위해 소계·합계 행을 제외한 뒤 동별 값을 자치구·산업별로 합산했습니다. 정보통신업과 전체 산업 종사자를 구분했습니다.</li>
+      <li>소상공인시장진흥공단 서울 상가정보 2026년 1분기 자료에서 자치구와 상권업종소분류코드를 기준으로 점포 수를 집계했습니다. 자치구별 전체 점포 수 대비 업종별 점유율을 계산했습니다.</li>
+      <li>자치구명을 기준으로 두 지표를 결합하고, 25개 자치구가 모두 포함되는지 확인했습니다. 지도는 SGIS 기반 2020년 시군구 경계를 자치구명으로 연결했습니다.</li>
+    </ol>
+    <h4>지표 정의와 계산식</h4>
+    <div class="formula-grid">
+      <section>
+        <p><strong>정보통신업 입지계수 (LQ)</strong></p>
+        <div class="formula-list" aria-label="LQ 계산식">
+          <div class="formula-line"><span class="formula-name">구의 IT 비중</span><span>=</span><span class="fraction"><span>E<sub>d, IT</sub></span><span>E<sub>d, 전체</sub></span></span></div>
+          <div class="formula-line"><span class="formula-name">서울의 IT 비중</span><span>=</span><span class="fraction"><span>E<sub>서울, IT</sub></span><span>E<sub>서울, 전체</sub></span></span></div>
+          <div class="formula-line"><span class="formula-name">LQ<sub>d</sub></span><span>=</span><span>구의 IT 비중</span><span>÷</span><span>서울의 IT 비중</span></div>
+        </div>
+        <p>구의 산업 내 정보통신업 종사자 비중을 서울 전체 비중으로 나눈 값입니다. 1 초과는 서울 평균보다 집중, 1 미만은 평균보다 낮음을 뜻합니다.</p>
+      </section>
+      <section>
+        <p><strong>Shannon 업종 다양성</strong></p>
+        <div class="formula-list" aria-label="Shannon 지수 계산식">
+          <div class="formula-line"><span class="formula-name">업종 비중 p<sub>d,i</sub></span><span>=</span><span class="fraction"><span>n<sub>d,i</sub></span><span>N<sub>d</sub></span></span></div>
+          <div class="formula-line"><span class="formula-name">Shannon H<sub>d</sub></span><span>= −Σ<sub>i</sub> p<sub>d,i</sub> ln(p<sub>d,i</sub>)</span></div>
+          <div class="formula-line"><span class="formula-name">정규화 H′<sub>d</sub></span><span>=</span><span class="fraction"><span>H<sub>d</sub></span><span>ln(S<sub>d</sub>)</span></span></div>
+        </div>
+        <p>n은 해당 구의 업종 소분류별 점포 수, N은 구 전체 점포 수, S는 점포가 관측된 소분류 수입니다. 정규화 지수가 높을수록 점포가 여러 업종에 고르게 분포합니다.</p>
+      </section>
+    </div>
+    <h4>산출 결과</h4>
+    <p><strong>서울 전체 기준:</strong> 종사자 5,772,456명, 정보통신업 490,271명, 정보통신업 비중 8.49%.</p>
+    <p><strong>상관계수 (n = 25):</strong> Pearson — Shannon 원지수 −0.213, 정규화 지수 −0.275. Spearman — 원지수 −0.136, 정규화 지수 −0.188.</p>
+    <p><strong>지역 사례:</strong> LQ 상위는 금천구 2.272, 마포구 1.981, 구로구 1.625. 정규화 Shannon 상위는 구로구 0.857, 송파구 0.848, 광진구 0.848입니다. LQ가 가장 높은 금천구의 Shannon은 0.826이며, Shannon이 가장 낮은 강남구(0.813)의 LQ는 1.446입니다.</p>
+    <p><strong>해석상 주의:</strong> 두 지표는 약한 음의 상관 방향을 보였으며, IT LQ가 높은 곳에서 업종 다양성이 높아지는 경향은 확인되지 않았습니다. 종사자 자료는 2024년, 상가 자료는 2026년 1분기 기준이라 탐색적 비교로 해석해야 합니다. 상관 결과는 인과관계를 뜻하지 않습니다.</p>
+  </section>
+    </div>
+  </details>
+  <p class="source">자료: <a href="https://data.seoul.go.kr/dataList/DT201004O0400042017/S/2/datasetView.do" target="_blank" rel="noreferrer">서울시 사업체현황(산업대분류별·동별)</a> 2024년, 소상공인시장진흥공단 상가(상권)정보 2026년 3월. 경계: 통계청 SGIS 기반 <a href="https://github.com/statgarten/maps" target="_blank" rel="noreferrer">서울특별시 시군구 GeoJSON</a> (2020).</p>
+  <script type="application/json" id="district-boundaries">__BOUNDARIES__</script>
+  <script type="application/json" id="district-metrics">__METRICS__</script>
+  <script type="module">
+    import proj4 from "https://esm.sh/proj4@2.11.0";
+    import { geoMercator, geoPath } from "https://esm.sh/d3-geo@3.1.1";
+    const root = document.getElementById("seoul-it-lq-shannon-map");
+    const geo = JSON.parse(root.querySelector("#district-boundaries").textContent);
+    const rows = JSON.parse(root.querySelector("#district-metrics").textContent);
+    const byName = new Map(rows.map(d => [d.gu, d]));
+    const sourceCrs = "+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=1000000 +y_0=2000000 +ellps=GRS80 +units=m +no_defs";
+    function transform(coords) {
+      if (typeof coords[0] === "number") return proj4(sourceCrs, "WGS84", coords);
+      return coords.map(transform);
+    }
+    geo.features = geo.features.map(f => ({ ...f, geometry: { ...f.geometry, coordinates: transform(f.geometry.coordinates) } }));
+    for (const f of geo.features) f.properties.metric = byName.get(f.properties.title);
+    const sh = rows.map(d => d.Shannon_normalized);
+    const lqs = rows.map(d => d.IT_LQ_vs_Seoul);
+    const shMin = Math.min(...sh), shMax = Math.max(...sh);
+    const lqMin = Math.min(...lqs), lqMax = Math.max(...lqs);
+    const lqBelowColors = ["#0c4a6e", "#156082", "#2b7a9d", "#58a6c6", "#a7d8e8"];
+    const lqAboveColors = ["#fdd49e", "#fdbb84", "#fc8d59", "#ef6548", "#b30000"];
+    const shannonColors = ["#f1e9ff", "#d5b3ff", "#b57aff", "#8b3fe6", "#4c1d95"];
+    root.querySelector("#shannon-min").textContent = shMin.toFixed(3);
+    root.querySelector("#shannon-max").textContent = shMax.toFixed(3);
+    root.querySelector("#lq-min").textContent = lqMin.toFixed(3);
+    root.querySelector("#lq-max").textContent = lqMax.toFixed(3);
+    function draw(selector, valueKey, colorMode) {
+      const svg = root.querySelector(selector);
+      const width = Math.max(300, Math.round(svg.getBoundingClientRect().width || 500));
+      const height = Math.round(width * 1.08);
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      const projection = geoMercator().fitExtent([[12, 10], [width - 12, height - 10]], geo);
+      const path = geoPath(projection);
+      for (const f of geo.features) {
+        const row = f.properties.metric;
+        if (!row) continue;
+        const val = row[valueKey];
+        const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        p.setAttribute("class", "district"); p.setAttribute("d", path(f)); p.setAttribute("tabindex", "0");
+        let fillColor;
+        if (colorMode === "lq") {
+          const above = val >= 1;
+          const magnitude = above ? (val - 1) / (lqMax - 1 || 1) : (1 - val) / (1 - lqMin || 1);
+          const colorIndex = Math.min(4, Math.floor(Math.min(1, magnitude) * 5));
+          fillColor = above ? lqAboveColors[colorIndex] : lqBelowColors[4 - colorIndex];
+          p.innerHTML = `<title>${f.properties.title} · IT LQ ${val.toFixed(3)} · 정보통신업 종사자 ${Number(row.info_comm_employees_2024).toLocaleString()}명</title>`;
+        } else {
+          const t = (val - shMin) / (shMax - shMin || 1);
+          fillColor = shannonColors[Math.min(4, Math.floor(Math.min(1, t) * 5))];
+          p.innerHTML = `<title>${f.properties.title} · 정규화 Shannon ${val.toFixed(3)} · 상가 ${Number(row.active_stores_202603).toLocaleString()}개</title>`;
+        }
+        p.setAttribute("fill", fillColor);
+        p.setAttribute("fill-opacity", "1");
+        svg.appendChild(p);
+      }
+    }
+    function drawRanked(selector, metric, kind) {
+      const svg = root.querySelector(selector);
+      const width = Math.max(310, Math.round(svg.getBoundingClientRect().width || 480));
+      const top = 10, rowHeight = 21, axisHeight = 34, height = top + rows.length * rowHeight + axisHeight;
+      const left = 64, right = 57, plotRight = width - right, plotWidth = plotRight - left;
+      const domainMin = kind === "lq" ? 0 : 0.8;
+      const domainMax = kind === "lq" ? Math.max(2.5, Math.ceil(lqMax * 2) / 2) : 0.86;
+      const x = value => left + (value - domainMin) / (domainMax - domainMin) * plotWidth;
+      const data = [...rows].sort((a, b) => b[metric] - a[metric]);
+      svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      svg.setAttribute("height", String(height));
+      const ns = "http://www.w3.org/2000/svg";
+      const add = (tag, attrs, textValue) => {
+        const node = document.createElementNS(ns, tag);
+        for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, String(value));
+        if (textValue !== undefined) node.textContent = textValue;
+        svg.appendChild(node);
+        return node;
+      };
+      const ticks = kind === "lq" ? [0, 1, 2] : [0.8, 0.82, 0.84, 0.86];
+      for (const tick of ticks) {
+        const xx = x(tick), baseline = kind === "lq" && tick === 1;
+        add("line", { x1: xx, x2: xx, y1: top - 3, y2: top + data.length * rowHeight - 2,
+          stroke: "currentColor", "stroke-width": baseline ? 1.6 : 1, opacity: baseline ? .75 : .14 });
+        add("text", { x: xx, y: height - 5, "text-anchor": "middle", class: "rank-tick" },
+          kind === "lq" ? tick.toFixed(0) : tick.toFixed(2));
+      }
+      data.forEach((row, index) => {
+        const value = row[metric], y = top + index * rowHeight + 14;
+        add("text", { x: left - 7, y, "text-anchor": "end", class: "rank-label" }, row.gu);
+        let fill, start, end;
+        if (kind === "lq") {
+          const above = value >= 1;
+          const strength = above ? (value - 1) / (lqMax - 1 || 1) : (1 - value) / (1 - lqMin || 1);
+          const colorIndex = Math.min(4, Math.floor(Math.min(1, strength) * 5));
+          fill = above ? lqAboveColors[colorIndex] : lqBelowColors[4 - colorIndex];
+          start = x(1); end = x(value);
+        } else {
+          const t = (value - shMin) / (shMax - shMin || 1);
+          fill = shannonColors[Math.min(4, Math.floor(Math.min(1, t) * 5))];
+          start = x(domainMin); end = x(value);
+        }
+        add("rect", { x: Math.min(start, end), y: y - 9, width: Math.max(1, Math.abs(end - start)), height: 12, fill });
+        add("text", { x: width - 3, y, "text-anchor": "end", class: "rank-value" }, value.toFixed(3));
+      });
+    }
+    function renderAll() {
+      for (const svg of root.querySelectorAll("svg")) svg.replaceChildren();
+      draw("#map-lq", "IT_LQ_vs_Seoul", "lq");
+      draw("#map-shannon", "Shannon_normalized", "shannon");
+      drawRanked("#lq-ranking", "IT_LQ_vs_Seoul", "lq");
+      drawRanked("#shannon-ranking", "Shannon_normalized", "shannon");
+    }
+    requestAnimationFrame(renderAll);
+    new ResizeObserver(renderAll).observe(root);
+  </script>
+</div>
